@@ -1,34 +1,28 @@
-# GA4 Analytics Warehouse with dbt, Airflow, BigQuery, and Power BI
+<div align="center">
 
-End-to-end analytics warehouse project built on top of Google Analytics event data using BigQuery, dbt, Apache Airflow, and Power BI.
+# GA4 Analytics Warehouse
+### dbt · BigQuery · Apache Airflow · Power BI
+
+*End-to-end analytics warehouse project built on top of Google Analytics event data using BigQuery, dbt, Apache Airflow, and Power BI.*
 
 The project transforms raw event-level data into structured analytical models for session analysis, channel performance, funnel monitoring, and executive KPI reporting. The warehouse is organized around a session-level fact model, supporting dimensions, KPI aggregations, operational monitoring models, and documented lineage from source to dashboard.
 
----
-
-## Technology Stack
-
-### Warehouse and Transformation
-- Google BigQuery
-- dbt
-- SQL
-
-### Pipeline Orchestration
-- Apache Airflow
-
-### Visualization
-- Power BI
-
-### Engineering Components
-- dimensional modeling
-- automated data testing
-- anomaly monitoring
-- data lineage documentation
-- dashboard exposure tracking
+</div>
 
 ---
 
-## Project Overview
+## 🗂 Technology Stack
+
+| Category | Tools |
+|---|---|
+| **Warehouse & Transformation** | Google BigQuery · dbt · SQL |
+| **Pipeline Orchestration** | Apache Airflow |
+| **Visualization** | Power BI |
+| **Engineering Components** | Dimensional modeling · Automated data testing · Anomaly monitoring · Data lineage documentation · Dashboard exposure tracking |
+
+---
+
+## 📌 Project Overview
 
 Google Analytics exports user activity as raw event-level data. Each record represents an individual interaction such as a page view, product interaction, cart action, or purchase event, along with device, traffic, and geographic attributes.
 
@@ -44,7 +38,7 @@ The result is a warehouse that organizes raw telemetry into reusable analytical 
 
 ---
 
-## System Architecture
+## 🏗 System Architecture
 
 ```
 GA4 Event Data in BigQuery
@@ -75,7 +69,7 @@ This structure separates the warehouse into clear layers.
 
 ---
 
-## Data Warehouse Design
+## 🧱 Data Warehouse Design
 
 The warehouse is centered around session-level modeling.
 
@@ -90,19 +84,19 @@ This design supports a clean separation between:
 
 ---
 
-## Core Models
+## 🔩 Core Models
 
-### stg_events
+### `stg_events`
 
 This model standardizes the event source and prepares it for downstream warehouse transformations.
 
 Its role in the warehouse is to isolate source-level cleanup and normalization before analytical modeling begins.
 
-### fact_sessions
+### `fact_sessions`
 
 This is the central fact model in the warehouse.
 
-**Grain:** one row per session
+> **Grain:** one row per session
 
 The model consolidates event-level records into a session-level analytical table and supports metrics such as:
 
@@ -119,56 +113,47 @@ This model forms the analytical backbone of the warehouse and is the main source
 
 ---
 
-## Dimension Models
+## 📐 Dimension Models
 
-### dim_date
-Provides calendar context for time-based analysis.
-
-### dim_device
-Provides device segmentation for session and revenue analysis.
-
-### dim_geo
-Provides geographic context for regional analysis.
-
-### dim_traffic
-Provides traffic attribution context for source / channel analysis.
+| Model | Purpose |
+|---|---|
+| `dim_date` | Provides calendar context for time-based analysis |
+| `dim_device` | Provides device segmentation for session and revenue analysis |
+| `dim_geo` | Provides geographic context for regional analysis |
+| `dim_traffic` | Provides traffic attribution context for source / channel analysis |
 
 These dimensions separate reusable descriptive attributes from the core behavioral fact table and support more consistent reporting across KPI models.
 
 ---
 
-## KPI Models
+## 📊 KPI Models
 
 The warehouse includes dedicated KPI aggregation models.
 
-### kpi_daily_overview
-Aggregates daily executive-level metrics.
-
-### kpi_channel_daily
-Aggregates metrics by channel for marketing performance analysis.
-
-### kpi_funnel_daily
-Aggregates funnel-stage behavior for conversion analysis.
+| Model | Purpose |
+|---|---|
+| `kpi_daily_overview` | Aggregates daily executive-level metrics |
+| `kpi_channel_daily` | Aggregates metrics by channel for marketing performance analysis |
+| `kpi_funnel_daily` | Aggregates funnel-stage behavior for conversion analysis |
 
 These KPI models provide reporting-ready outputs rather than requiring the dashboard to compute business logic directly from lower-level warehouse tables.
 
 ---
 
-## Operational Monitoring Models
+## 🔍 Operational Monitoring Models
 
 The project includes dedicated operational models.
 
-### ops_daily_health
-Supports warehouse health monitoring.
-
-### anomaly_sessions_drop_last_day
-Detects unusual session drops.
+| Model | Purpose |
+|---|---|
+| `ops_daily_health` | Supports warehouse health monitoring |
+| `anomaly_sessions_drop_last_day` | Detects unusual session drops |
 
 These models extend the warehouse beyond transformation and reporting by adding monitoring logic directly to the analytical environment.
 
 ---
 
-## Data Quality and Validation
+## ✅ Data Quality and Validation
 
 The project includes **57 dbt tests**.
 
@@ -183,7 +168,7 @@ The test layer helps ensure that modeled outputs remain trustworthy as transform
 
 ---
 
-## Data Lineage and Documentation
+## 🔗 Data Lineage and Documentation
 
 dbt documentation is generated for the project, including model lineage from source through analytical outputs.
 
@@ -198,11 +183,16 @@ The lineage graph shows the full dependency flow across:
 
 This makes it possible to trace how business-facing metrics are derived from the underlying warehouse models.
 
-**dbt Lineage Graph**
+<div align="center">
+
+![dbt Lineage Graph](images/dbt_lineage.png)
+*dbt Lineage Graph — full dependency flow from source to dashboard*
+
+</div>
 
 ---
 
-## Pipeline Orchestration
+## ⚙️ Pipeline Orchestration
 
 The transformation workflow is orchestrated with Apache Airflow.
 
@@ -213,36 +203,65 @@ This establishes a clear separation between:
 - transformation logic in dbt
 - execution scheduling and pipeline control in Airflow
 
-**Airflow DAG**
+<div align="center">
+
+![Airflow DAG](images/airflow_dag.png)
+*Airflow DAG — successful pipeline completion across the transformation process*
+
+</div>
 
 ---
 
-## Dashboard Exposure
+## 📡 Dashboard Exposure
 
 The project includes a dbt exposure:
 
-**executive_kpi_dashboard**
+**`executive_kpi_dashboard`**
 
 This connects the modeled warehouse outputs to the reporting layer and documents the dependency between transformation models and dashboard consumption.
 
 ---
 
-## Power BI Dashboard
+## 📈 Power BI Dashboard
 
 The warehouse feeds a multi-page Power BI dashboard built on top of the modeled KPI layer.
 
 ### Executive Overview
+
 This page presents high-level business metrics such as revenue, sessions, users, conversion performance, and related trend views.
 
+<div align="center">
+
+![Executive Overview Dashboard](images/dashboard_exec.png)
+*Executive Overview — revenue, sessions, users, and conversion performance*
+
+</div>
+
 ### Channel Performance
+
 This page focuses on traffic and channel analysis, supporting comparison of channel contribution and performance.
 
+<div align="center">
+
+![Channel Performance Dashboard](images/dashboard_channels.png)
+*Channel Performance — traffic and channel contribution analysis*
+
+</div>
+
 ### Funnel Analysis
+
 This page focuses on conversion funnel behavior, helping identify stage-level progression and drop-off patterns.
+
+<div align="center">
+
+![Funnel Analysis Dashboard](images/dashboard_funnel.png)
+*Funnel Analysis — stage-level progression and drop-off patterns*
+
+</div>
 
 ---
 
-## Warehouse Modeling Approach
+## 💡 Warehouse Modeling Approach
 
 This project applies core data warehousing principles.
 
@@ -263,7 +282,7 @@ dbt documentation makes dependencies visible from source to dashboard, improving
 
 ---
 
-## What the Project Demonstrates
+## 🎯 What the Project Demonstrates
 
 This repository demonstrates practical implementation of:
 
@@ -278,7 +297,7 @@ This repository demonstrates practical implementation of:
 
 ---
 
-## Summary
+## 📝 Summary
 
 This project implements an analytics warehouse that transforms raw GA4 event data in BigQuery into structured, tested, and documented analytical models.
 
