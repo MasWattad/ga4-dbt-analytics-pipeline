@@ -185,7 +185,7 @@ This makes it possible to trace how business-facing metrics are derived from the
 
 <div align="center">
 
-![dbt Lineage Graph](images/dbt_lineage.png)
+![dbt Lineage Graph](lgraph.png)
 *dbt Lineage Graph — full dependency flow from source to dashboard*
 
 </div>
@@ -205,7 +205,7 @@ This establishes a clear separation between:
 
 <div align="center">
 
-![Airflow DAG](images/airflow_dag.png)
+![Airflow DAG](pic44.png)
 *Airflow DAG — successful pipeline completion across the transformation process*
 
 </div>
