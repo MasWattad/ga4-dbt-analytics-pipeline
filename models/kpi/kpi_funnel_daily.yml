@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: kpi_funnel_daily
+    description: "Daily funnel summary (page_view -> add_to_cart -> purchase). Grain: 1 row per date."
+    columns:
+      - name: date_day
+        tests: [unique, not_null]
+      - name: sessions
+        tests: [not_null]
+      - name: sessions_with_page_view
+        tests: [not_null]
+      - name: sessions_with_add_to_cart
+        tests: [not_null]
+      - name: sessions_with_purchase
+        tests: [not_null]

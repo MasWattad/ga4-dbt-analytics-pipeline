@@ -1,0 +1,44 @@
+# -----------------------------
+# dbt generated artifacts
+# -----------------------------
+target/
+dbt_packages/
+logs/
+dbt_modules/
+
+# dbt local configs
+profiles.yml
+.env
+
+# BigQuery credentials
+service_account.json
+dbt_profile/service_account.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Airflow logs
+orchestration/logs/
+
+# Docker artifacts
+*.pid
+*.log
+
+# temporary files
+tmp/
+*.tmp
+
+# Mac / Linux junk
+*.swp
+*.swo

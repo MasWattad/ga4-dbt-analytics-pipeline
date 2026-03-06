@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: kpi_daily_overview
+    description: "Daily KPI overview built from fact_sessions. Grain: date + device + country + channel."
+
+    columns:
+      - name: date_day
+        tests: [not_null]
+
+      - name: device
+        tests: [not_null]
+
+      - name: country
+        tests: [not_null]
+
+      - name: channel
+        tests: [not_null]
+
+      - name: source_medium
+        tests: [not_null]
+
+      - name: sessions
+        tests: [not_null]
+
+      - name: users
+        tests: [not_null]
+
+      - name: revenue
+        tests: [not_null]
+
+      - name: converting_sessions
+        tests: [not_null]
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date_day
+              - device
+              - country
+              - channel
+              - source_medium

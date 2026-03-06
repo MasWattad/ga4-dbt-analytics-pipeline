@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: ga4_stg
+    database: bi-ga-platform
+    schema: stg
+    tables:
+      - name: stg_events
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: event_ts

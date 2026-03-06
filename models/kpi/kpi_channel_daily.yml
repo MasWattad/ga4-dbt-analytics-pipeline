@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: kpi_channel_daily
+    description: "Daily channel performance by traffic source and medium."
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - date_day
+              - traffic_source
+              - traffic_medium
+
+    columns:
+      - name: date_day
+        tests: [not_null]
+
+      - name: traffic_source
+        tests: [not_null]
+
+      - name: traffic_medium
+        tests: [not_null]
+
+      - name: channel
+        tests: [not_null]
+
+      - name: source_medium
+        tests: [not_null]
+
+      - name: sessions
+        tests: [not_null]
+
+      - name: revenue
+        tests: [not_null]
+
+      - name: converting_sessions
+        tests: [not_null]

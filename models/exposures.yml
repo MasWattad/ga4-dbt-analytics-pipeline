@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: executive_kpi_dashboard
+    type: dashboard
+    maturity: high
+    description: >
+      Executive KPI dashboard (Power BI / Looker Studio) powered by the KPI layer.
+
+    depends_on:
+      - ref('kpi_daily_overview')
+      - ref('kpi_channel_daily')
+      - ref('kpi_funnel_daily')
+
+    owner:
+      name: Mas Wattad
+      email: maswattad22@gmail.com

@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: dim_device
+    columns:
+      - name: device_category
+        tests: [unique, not_null]

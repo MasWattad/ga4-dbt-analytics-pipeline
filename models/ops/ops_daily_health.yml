@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: ops_daily_health
+    description: >
+      Pipeline health snapshot table. Records the latest available session_date
+      and key metrics for that day (sessions, revenue, converting sessions).
+      Used for monitoring and operational visibility.
+
+    columns:
+      - name: recorded_at
+        tests: [not_null]
+
+      - name: latest_data_day
+        tests: [not_null]
+
+      - name: latest_day_sessions
+        tests: [not_null]
+
+      - name: latest_day_revenue
+        tests: [not_null]
+
+      - name: latest_day_converting_sessions
+        tests: [not_null]
