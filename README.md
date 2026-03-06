@@ -232,7 +232,7 @@ This page presents high-level business metrics such as revenue, sessions, users,
 
 <div align="center">
 
-![Executive Overview Dashboard](images/dashboard_exec.png)
+![Executive Overview Dashboard](dash1.png)
 *Executive Overview — revenue, sessions, users, and conversion performance*
 
 </div>
@@ -243,7 +243,7 @@ This page focuses on traffic and channel analysis, supporting comparison of chan
 
 <div align="center">
 
-![Channel Performance Dashboard](images/dashboard_channels.png)
+![Channel Performance Dashboard](dash2.png)
 *Channel Performance — traffic and channel contribution analysis*
 
 </div>
@@ -254,7 +254,7 @@ This page focuses on conversion funnel behavior, helping identify stage-level pr
 
 <div align="center">
 
-![Funnel Analysis Dashboard](images/dashboard_funnel.png)
+![Funnel Analysis Dashboard](dash3.png)
 *Funnel Analysis — stage-level progression and drop-off patterns*
 
 </div>
