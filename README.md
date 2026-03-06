@@ -5,7 +5,6 @@ End-to-end analytics warehouse project built on top of Google Analytics event da
 The project transforms raw event-level data into structured analytical models for session analysis, channel performance, funnel monitoring, and executive KPI reporting. The warehouse is organized around a session-level fact model, supporting dimensions, KPI aggregations, operational monitoring models, and documented lineage from source to dashboard.
 
 Technology Stack
-
 Warehouse and Transformation
 
 Google BigQuery
@@ -148,17 +147,11 @@ KPI Models
 
 The warehouse includes dedicated KPI aggregation models:
 
-kpi_daily_overview
+kpi_daily_overview – aggregates daily executive-level metrics
 
-Aggregates daily executive-level metrics.
+kpi_channel_daily – aggregates metrics by channel for marketing performance analysis
 
-kpi_channel_daily
-
-Aggregates metrics by channel for marketing performance analysis.
-
-kpi_funnel_daily
-
-Aggregates funnel-stage behavior for conversion analysis.
+kpi_funnel_daily – aggregates funnel-stage behavior for conversion analysis
 
 These KPI models provide reporting-ready outputs rather than requiring the dashboard to compute business logic directly from lower-level warehouse tables.
 
@@ -166,13 +159,9 @@ Operational Monitoring Models
 
 The project includes dedicated operational models:
 
-ops_daily_health
+ops_daily_health – supports warehouse health monitoring
 
-Supports warehouse health monitoring.
-
-anomaly_sessions_drop_last_day
-
-Detects unusual session drops.
+anomaly_sessions_drop_last_day – detects unusual session drops
 
 These models extend the warehouse beyond transformation and reporting by adding monitoring logic directly to the analytical environment.
 
@@ -212,6 +201,8 @@ dashboard exposure
 
 This makes it possible to trace how business-facing metrics are derived from the underlying warehouse models.
 
+Insert dbt Lineage Screenshot Here
+![dbt Lineage Graph](images/dbt_lineage.png)
 Pipeline Orchestration
 
 The transformation workflow is orchestrated with Apache Airflow.
@@ -224,6 +215,8 @@ transformation logic in dbt
 
 execution scheduling and pipeline control in Airflow
 
+Insert Airflow DAG Screenshot Here
+![Airflow DAG](images/airflow_dag.png)
 Dashboard Exposure
 
 The project includes a dbt exposure:
@@ -240,17 +233,23 @@ Executive Overview
 
 This page presents high-level business metrics such as revenue, sessions, users, conversion performance, and related trend views.
 
+Insert Dashboard Screenshot (Page 1)
+![Executive Dashboard](images/dashboard_exec.png)
 Channel Performance
 
 This page focuses on traffic and channel analysis, supporting comparison of channel contribution and performance.
 
+Insert Dashboard Screenshot (Page 2)
+![Channel Performance](images/dashboard_channels.png)
 Funnel Analysis
 
 This page focuses on conversion funnel behavior, helping identify stage-level progression and drop-off patterns.
 
+Insert Dashboard Screenshot (Page 3)
+![Funnel Analysis](images/dashboard_funnel.png)
 Warehouse Modeling Approach
 
-This project applies core data warehousing principles:
+This project applies core data warehousing principles.
 
 Session-level fact modeling
 
